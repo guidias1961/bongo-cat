@@ -1,3 +1,6 @@
+Sure, here is the complete code with the requested changes. The Portuguese text has been translated to English, and the GitBook and X (formerly Twitter) links have been updated as requested.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -235,10 +238,10 @@
       <a id="nav-fav" onclick="showSection('favorites')">❤️ Favorites</a>
       <button onclick="toggleUpload()">🎵 Upload Track</button>
       <div class="cta-row">
-        <a class="btn-ghost" href="https://bongo-cat-1.gitbook.io/bongo-cat-docs/" target="_blank" rel="noopener" aria-label="Abrir documentação">
+        <a class="btn-ghost" href="https://pengu-beats.gitbook.io/pengu-beats" target="_blank" rel="noopener" aria-label="Open documentation">
           📘 Docs
         </a>
-        <a class="btn-ghost" href="https://x.com/BongoCatOFC" target="_blank" rel="noopener" aria-label="Abrir perfil no X (Twitter)">
+        <a class="btn-ghost" href="https://x.com/PenguBeats" target="_blank" rel="noopener" aria-label="Open X (Twitter) profile">
           𝕏 Twitter
         </a>
       </div>
@@ -311,7 +314,6 @@
       </div>
     </div>
   </div>
-  <!-- Upload Modal -->
   <div id="uploadModal" class="modal-backdrop">
     <div class="modal">
       <h2>🎵 Upload Your Track</h2>
@@ -335,7 +337,6 @@
       <button class="cancel" onclick="toggleModal('uploadModal', false)">Cancel</button>
     </div>
   </div>
-  <!-- Support Modal -->
   <div id="supportModal" class="modal-backdrop">
     <div class="modal">
       <h2>🤝 Support the Artist</h2>
@@ -391,13 +392,13 @@
         try {
           await navigator.share({ title: `Pengu Beats – ${title}`, text, url });
           return;
-        } catch (_) { /* cancelado ou falhou; fallback */ }
+        } catch (_) { /* cancelled or failed; fallback */ }
       }
       try {
         await navigator.clipboard.writeText(url);
-        alert('Link copiado: ' + url);
+        alert('Link copied: ' + url);
       } catch {
-        prompt('Copie o link da track:', url);
+        prompt('Copy the track link:', url);
       }
     }
     const LIMITS = {
@@ -411,29 +412,29 @@
       return false;
     }
     function validateFile(file, kind) {
-      if (!(file instanceof File)) return { ok:false, reason:'Arquivo ausente.' };
+      if (!(file instanceof File)) return { ok:false, reason:'Missing file.' };
       if (kind === 'audio') {
         if (!LIMITS.audioTypes.has(file.type)) {
-          return { ok:false, reason:'Apenas MP3 é aceito.' };
+          return { ok:false, reason:'Only MP3 is accepted.' };
         }
         if (file.size > LIMITS.audioMaxBytes) {
-          return { ok:false, reason:'O MP3 excede 15 MB.' };
+          return { ok:false, reason:'MP3 exceeds 15 MB.' };
         }
         if (!/\.(mp3)$/i.test(file.name || '')) {
-          return { ok:false, reason:'Extensão inválida: use .mp3' };
+          return { ok:false, reason:'Invalid extension: use .mp3' };
         }
         return { ok:true };
       }
       if (kind === 'image') {
         if (!LIMITS.imageTypes.has(file.type)) {
-          return { ok:false, reason:'Imagem deve ser JPG, PNG ou WebP.' };
+          return { ok:false, reason:'Image must be JPG, PNG or WebP.' };
         }
         if (file.size > LIMITS.imageMaxBytes) {
-          return { ok:false, reason:'A imagem excede 3 MB.' };
+          return { ok:false, reason:'Image exceeds 3 MB.' };
         }
         return { ok:true };
       }
-      return { ok:false, reason:'Tipo de arquivo desconhecido.' };
+      return { ok:false, reason:'Unknown file type.' };
     }
     const DEVICE_ID = (() => {
       const k = 'bongoDeviceId';
@@ -569,11 +570,11 @@
       const coverFile = coverFileEl.files[0] || null;
       if (!title || !artist) {
         setUploading(false);
-        return fail('Preencha título e artista.');
+        return fail('Please fill in title and artist.');
       }
       if (!audioFile) {
         setUploading(false);
-        return fail('Selecione um arquivo MP3.');
+        return fail('Please select an MP3 file.');
       }
       const av = validateFile(audioFile, 'audio');
       if (!av.ok) { setUploading(false); return fail(av.reason); }
@@ -598,8 +599,8 @@
         fd.append('idempotencyKey', idemKey);
         const res = await fetch(`${API_BASE}/api/upload`, { method: 'POST', body: fd });
         if (!res.ok) {
-          if (res.status === 413) throw new Error('Arquivo muito grande (limites: MP3 até 15 MB; imagem até 3 MB).');
-          if (res.status === 415) throw new Error('Tipo de arquivo não suportado.');
+          if (res.status === 413) throw new Error('File too large (limits: MP3 up to 15 MB; image up to 3 MB).');
+          if (res.status === 415) throw new Error('Unsupported file type.');
           throw new Error('Upload API error');
         }
         const { track } = await res.json();
@@ -1054,7 +1055,7 @@
           AppState.tracks = AppState.tracks.map(t => {
             const m = map.get(String(t.id));
             return m ? { ...t, likesCount: (typeof m.likesCount === 'number' ? m.likesCount : t.likesCount),
-                              playCount: (typeof m.playCount === 'number' ? m.playCount : t.playCount) } : t;
+                                playCount: (typeof m.playCount === 'number' ? m.playCount : t.playCount) } : t;
           });
         } catch (e) { console.warn('metrics sync failed', e); }
       }
@@ -1091,3 +1092,4 @@
   </script>
 </body>
 </html>
+```
