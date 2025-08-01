@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pengu Beats – Stream Your Music on Abstract</title>
-<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/guidias1961/bongo-cat/main/site/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/guidias1961/bongo-cat/main/site/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/guidias1961/bongo-cat/main/site/apple-touch-icon.png">
-
+  <title>Bongo Cat – Stream Your Music on Bitcoin</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16.png?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <style>
     * { margin:0; padding:0; box-sizing:border-box }
     body { display:flex; height:100vh; font-family:'Segoe UI',sans-serif; background:#0d0d0d; color:#e0e0e0; overflow:hidden }
     #sidebar { width:280px; padding:20px; background:rgba(20,20,20,0.9); backdrop-filter:blur(8px); display:flex; flex-direction:column; gap:20px; border-right:1px solid #333 }
-#sidebar h1 { font-size:1.4rem; color:#14f195; display:flex; align-items:center; gap:10px } /* 2rem × 0.7 = 1.4rem */
+    #sidebar h1 { font-size:2rem; color:#f7931a; display:flex; align-items:center; gap:10px }
     .cat-emoji {  font-size: 3.16rem;  width: 51px;}
     #sidebar nav a, #sidebar nav button { display:block; padding:12px 0; color:#bbb; cursor:pointer; text-decoration:none; background:none; border:none; font:inherit; text-align:left; transition:color .2s; font-size:1rem }
-    /* Docs/Twitter buttons below Upload */
+    /* Botões Docs/Twitter abaixo do Upload */
     #sidebar nav .cta-row{
       display:flex;
       gap:10px;
@@ -38,44 +37,44 @@
     }
     #sidebar nav .btn-ghost:hover{
       background:#1b1b1b;
-      border-color:#14f195;
-      color:#14f195;
+      border-color:#f7931a;
+      color:#f7931a;
       transform:translateY(-1px);
     }
 
-    #sidebar nav a.active, #sidebar nav a:hover, #sidebar nav button:hover { color:#14f195 }
+    #sidebar nav a.active, #sidebar nav a:hover, #sidebar nav button:hover { color:#f7931a }
     #main { flex:1; display:flex; flex-direction:column }
     header { padding:20px; background:rgba(20,20,20,0.9); border-bottom:1px solid #333; display:flex; align-items:center; gap:15px }
     #searchBar { flex:1; padding:12px 15px; background:#111; border:1px solid #333; color:#eee; font-size:1rem; border-radius:8px }
-    .header-info { color:#14f195; font-size:0.9rem; white-space:nowrap }
+    .header-info { color:#f7931a; font-size:0.9rem; white-space:nowrap }
     #contentArea { flex:1; overflow-y:auto; padding:20px; background:#121212; padding-bottom:100px }
     .section { display:none }
     .section.active { display:block }
     .track { display:flex; align-items:center; gap:15px; padding:15px; border-radius:8px; margin-bottom:15px; cursor:pointer; transition:all .2s; background:rgba(30,30,30,0.5); border:1px solid transparent }
-    .track:hover { background:rgba(20,241,149,0.1); border-color:#14f195 }
-    .track.playing { background:rgba(20,241,149,0.2); border-color:#14f195 }
+    .track:hover { background:rgba(247,147,26,0.1); border-color:#f7931a }
+    .track.playing { background:rgba(247,147,26,0.2); border-color:#f7931a }
     .track img { width:60px; height:60px; object-fit:cover; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.5) }
     .track-info { flex:1 }
     .track-info .title { font-weight:bold; font-size:1.1rem; margin-bottom:4px }
     .track-info .artist { color:#aaa; font-size:0.9rem }
-    .track-info .genre { font-size:0.8rem; color:#14f195; margin-top:4px }
+    .track-info .genre { font-size:0.8rem; color:#f7931a; margin-top:4px }
     .track-info .tw { font-size:0.8rem; color:#55acee; margin-top:4px; word-break:break-all }
-    .rank { font-size:1rem; width:30px; text-align:center; color:#14f195; font-weight:bold }
+    .rank { font-size:1rem; width:30px; text-align:center; color:#f7931a; font-weight:bold }
     .favorite-icon { font-size:24px; color:#666; cursor:pointer; user-select:none; transition:color .2s }
-    .favorite-icon.active { color:#14f195 }
-    .support-btn { background:#14f195; border:none; color:#000; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:.85rem; margin-left:8px; transition:background .2s; font-weight:bold }
-    .support-btn:hover { background:#0fdc83 }
+    .favorite-icon.active { color:#f7931a }
+    .support-btn { background:#f7931a; border:none; color:#000; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:.85rem; margin-left:8px; transition:background .2s; font-weight:bold }
+    .support-btn:hover { background:#e8850a }
     .meta-line { display:flex; align-items:center; gap:12px; font-size:0.9rem; color:#bbb; margin-left:auto }
     .meta-pill { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; background:#1f1f1f; border:1px solid #333; border-radius:999px; }
     #playerBar { position:fixed; bottom:0; left:0; width:100%; height:90px; background:rgba(20,20,20,0.95); backdrop-filter:blur(15px); border-top:1px solid #333; display:flex; align-items:center; padding:0 20px; gap:20px; z-index:1200 }
     #currentCover { width:70px; height:70px; border-radius:8px; object-fit:cover; box-shadow:0 4px 12px rgba(0,0,0,0.7) }
     #playerControls { flex:1; display:flex; align-items:center; gap:20px }
     #playerControls button { background:none; border:none; font-size:32px; color:#eee; cursor:pointer; transition:all .15s }
-    #playerControls button:hover { transform:scale(1.1); color:#14f195 }
+    #playerControls button:hover { transform:scale(1.1); color:#f7931a }
     #playerControls button:active { transform:scale(0.95) }
     .progress-container { flex:1; display:flex; flex-direction:column; gap:6px }
     input[type=range] { -webkit-appearance:none; width:100%; height:6px; background:#333; border-radius:3px; outline:none }
-    input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:#14f195; box-shadow:0 2px 8px rgba(20,241,149,0.7); cursor:pointer }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:#f7931a; box-shadow:0 2px 8px rgba(247,147,26,0.7); cursor:pointer }
     .time-display { display:flex; justify-content:space-between; font-size:12px; color:#888 }
     #trackInfo { display:flex; flex-direction:column; gap:4px; max-width:250px }
     #currentTitle { font-weight:bold; color:#fff; font-size:1rem }
@@ -90,19 +89,19 @@
     }
     .modal-backdrop { padding: 16px; }
 
-    .modal h2 { color:#14f195; margin-bottom:6px; font-size:1.4rem }
+    .modal h2 { color:#f7931a; margin-bottom:6px; font-size:1.4rem }
     .modal label { font-size:0.9rem; color:#bbb }
     .modal input[type=text], .modal input[type=file], .modal input[type=number] { padding:12px; background:#111; border:1px solid #333; border-radius:6px; color:#eee; font-size:1rem }
     .modal input[type=file] { padding:8px }
     .modal button { padding:12px 20px; border:none; border-radius:6px; cursor:pointer; transition:background .2s; font-size:1rem; font-weight:bold }
-    .modal button.confirm { background:#14f195; color:#000 }
-    .modal button.confirm:hover { background:#0fdc83 }
+    .modal button.confirm { background:#f7931a; color:#000 }
+    .modal button.confirm:hover { background:#e8850a }
     .modal button.cancel { background:#333; color:#eee }
     .modal button.cancel:hover { background:#444 }
     .loading-spinner {
       border: 3px solid rgba(255,255,255,0.3);
       border-radius: 50%;
-      border-top: 3px solid #14f195;
+      border-top: 3px solid #f7931a;
       width: 20px;
       height: 20px;
       animation: spin 1s linear infinite;
@@ -110,13 +109,12 @@
       vertical-align: middle;
       margin-right: 10px;
     }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     .empty-state { text-align:center; padding:60px 20px; color:#666 }
     .empty-state .cat-emoji { font-size:4rem; margin-bottom:20px; display:block }
     .upload-preview { display:flex; gap:15px; margin-top:10px; padding:15px; background:#222; border-radius:8px }
     .upload-preview img { width:80px; height:80px; object-fit:cover; border-radius:6px }
     .upload-info { flex:1 }
-    .upload-info h4 { color:#14f195; margin-bottom:5px }
+    .upload-info h4 { color:#f7931a; margin-bottom:5px }
     .upload-info p { color:#aaa; font-size:0.9rem }
     .qr-box { background:#111; border:1px solid #333; border-radius:8px; padding:12px; display:flex; justify-content:center }
     .small { font-size:0.85rem; color:#bbb }
@@ -129,11 +127,11 @@
       border:1px solid #333; background:#151515; display:inline-grid; place-items:center;
       cursor:pointer; transition:transform .15s, border-color .2s, background .2s;
     }
-    .vol-btn:hover { transform:scale(1.05); border-color:#14f195; background:#1b1b1b }
+    .vol-btn:hover { transform:scale(1.05); border-color:#f7931a; background:#1b1b1b }
     #volIcon { font-size:22px; color:#eee; pointer-events:none }
     .waves::before, .waves::after {
       content:""; position:absolute; inset:0; border-radius:999px;
-      border:1px solid rgba(20,241,149,.2); transform:scale(1); opacity:.8; animation: ping 1.4s ease-out infinite;
+      border:1px solid rgba(247,147,26,.2); transform:scale(1); opacity:.8; animation: ping 1.4s ease-out infinite;
     }
     .waves::after { animation-delay:.7s; }
     @keyframes ping { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(1.6);opacity:0} }
@@ -149,15 +147,15 @@
       transform:rotate(-90deg);
     }
     .vol-popover input[type=range]::-webkit-slider-thumb{
-      -webkit-appearance:none; width:14px; height:14px; border-radius:999px; background:#14f195; box-shadow:0 0 8px rgba(20,241,149,.7)
+      -webkit-appearance:none; width:14px; height:14px; border-radius:999px; background:#f7931a; box-shadow:0 0 8px rgba(247,147,26,.7)
     }
     .vol-value{ font-size:.85rem; color:#bbb; min-width:40px; text-align:center }
 
-    /* ====== Responsiveness ====== */
+    /* ====== Responsividade ====== */
     .hamburger{ display:none; background:none; border:none; font-size:28px; color:#eee; cursor:pointer }
-    .hamburger:hover{ color:#14f195 }
+    .hamburger:hover{ color:#f7931a }
 
-    /* overlay for mobile (doesn't affect desktop) */
+    /* overlay para mobile (não afeta desktop) */
     #sidebarOverlay{ display:none }
 
     #sidebar .sidebar-close { display: none; }
@@ -169,7 +167,7 @@
         transition:left .25s ease; box-shadow: 8px 0 24px rgba(0,0,0,.5)
       }
       #sidebar.open{ left:0 }
-      /* close button only on mobile */
+      /* botão fechar só no mobile */
       #sidebar .sidebar-close{
         display:inline-flex; position:absolute; top:12px; right:12px; background:#222; border:1px solid #444;
         border-radius:8px; padding:6px; color:#eee; cursor:pointer
@@ -177,12 +175,13 @@
       #main{ width:100% }
       header{ gap:10px }
       .hamburger{ display:inline-flex }
-      /* hide overflowing text on mobile */
+      /* esconder o texto que estoura no mobile */
       .header-info{ display:none }
       #currentCover{ display:none }
       #playerBar{ height:76px; padding:0 12px; gap:12px; display:flex !important; padding-bottom: env(safe-area-inset-bottom, 0px) }
       #trackInfo{ max-width:40vw }
       @media (max-width: 980px){
+        /* .meta-line{ display:none } */
         .track{
           align-items: flex-start;
           flex-wrap: wrap;
@@ -231,25 +230,26 @@
       display: block;
     }
 
-/* Buy $PENGU – same size as How it works + space */
+/* Buy $BONGO – mesmo tamanho do How it works + espaço */
 #sidebar nav .btn-ghost.cta-buy{
   display:block; width:100%; margin-top:12px; text-align:center;
 }
 
 #sidebar nav .btn-ghost.cta-buy:hover{
-  background:#0fdc83;
-  border-color:#0fdc83;
+  background:#e8850a;
+  border-color:#e8850a;
   color:#000;
   transform:translateY(-1px);
 }
+
 
   </style>
 </head>
 <body>
   <div id="sidebar">
     <h1>
-      <img src="./logo.png" alt="Pengu Beats" class="cat-emoji"/>
-      Pengu Beats
+      <img src="./logo.png" alt="Bongo Cat" class="cat-emoji"/>
+      Bongo Cat
     </h1>
     <button class="sidebar-close" aria-label="Close" onclick="closeSidebar()">
       <span class="material-icons">close</span>
@@ -261,31 +261,32 @@
       <button onclick="toggleUpload()">🎵 Upload Track</button>
 
       <div class="cta-row">
-        <a class="btn-ghost" href="https://pengu-beats.gitbook.io/pengu-beats/" target="_blank" rel="noopener" aria-label="Open documentation">
+        <a class="btn-ghost" href="https://bongo-cat-1.gitbook.io/bongo-cat-docs/" target="_blank" rel="noopener" aria-label="Abrir documentação">
           📘 Docs
         </a>
-        <a class="btn-ghost" href="https://x.com/PenguBeats" target="_blank" rel="noopener" aria-label="Open X (Twitter) profile">
+        <a class="btn-ghost" href="https://x.com/BongoCatOFC" target="_blank" rel="noopener" aria-label="Abrir perfil no X (Twitter)">
           𝕏 Twitter
         </a>
       </div>
       <button class="btn-ghost" id="howItWorksBtn" onclick="toggleHowItWorks()">❓ How it works</button>
       <div class="how-it-works-box" id="howItWorksBox">
-        <p><strong>Pengu Beats</strong> is a free music platform. You can listen anytime you want without paying anything.</p>
-        <p>You can also upload your own tracks and even earn <strong>ETH (Abstract)</strong> from community support. It's simple, fast, and fee‑free.</p>
+        <p><strong>Bongo Cat</strong> is a free music platform. You can listen anytime you want without paying anything.</p>
+        <p>You can also upload your own tracks and even earn <strong>sats</strong> from community support. It's simple, fast, and fee‑free.</p>
       </div>
 <a
-  id="buyPenguBtn"
+  id="buyBongoBtn"
   class="btn-ghost cta-buy"
-  href="#"
+  href="https://www.odin.fun"
   target="_blank"
   rel="noopener"
-  aria-label="Buy $PENGU"
->🟠 Buy $PENGU</a>
+  aria-label="Buy $BONGO"
+>🟠 Buy $BONGO</a>
+
 
     </nav>
 
     <div style="margin-top:auto;">
-      <div style="color:#14f195; font-size:0.9rem; margin-bottom:10px;">🎹 Producer Portal</div>
+      <div style="color:#f7931a; font-size:0.9rem; margin-bottom:10px;">🎹 Producer Portal</div>
       <div id="walletAddress" style="color:#fff; font-size:0.85rem; word-break:break-all;"></div>
     </div>
   </div>
@@ -300,19 +301,19 @@
 
       <input id="searchBar" type="text" placeholder="Search tracks, artists..." oninput="filterTracks()"/>
       <div class="header-info">
-        <div>💿 Abstract Music Platform</div>
+        <div>💿 BRC-20 Music Platform</div>
       </div>
     </header>
     <div id="contentArea">
       <div id="home" class="section active">
-        <h2 style="color:#14f195; margin-bottom:20px; font-size:1.5rem">🎵 Featured Tracks</h2>
+        <h2 style="color:#f7931a; margin-bottom:20px; font-size:1.5rem">🎵 Featured Tracks</h2>
         <div id="tracksList"></div>
       </div>
       <div id="favorites" class="section">
-        <h2 style="color:#14f195; margin-bottom:20px; font-size:1.5rem">❤️ Your Favorites</h2>
+        <h2 style="color:#f7931a; margin-bottom:20px; font-size:1.5rem">❤️ Your Favorites</h2>
         <div id="favoritesList">
           <div class="empty-state">
-            <span class="cat-emoji">🐧</span>
+            <span class="cat-emoji">😺</span>
             <h3>No favorites yet!</h3>
             <p>Start hearting some tracks to see them here</p>
           </div>
@@ -325,7 +326,7 @@
     <img id="currentCover" src="" alt="Cover" style="visibility:hidden"/>
     <div id="trackInfo">
       <div id="currentTitle">Select a track</div>
-      <div id="currentArtist">Pengu Beats</div>
+      <div id="currentArtist">Bongo Cat</div>
     </div>
     <div id="playerControls">
       <button onclick="prevTrack()"><span class="material-icons">skip_previous</span></button>
@@ -371,8 +372,8 @@
       <label for="twitterHandle">Artist Twitter (optional)</label>
       <input type="text" id="twitterHandle" placeholder="@your_twitter (optional)"/>
 
-      <label for="tipWallet">Tip wallet (ETH on Abstract, optional)</label>
-      <input type="text" id="tipWallet" placeholder="0x… (ETH, optional)"/>
+      <label for="tipWallet">Tip wallet (BTC, optional)</label>
+      <input type="text" id="tipWallet" placeholder="Tip wallet (BTC, optional)"/>
 
       <label for="trackFile">Audio file — <b>track</b> slot <span class="small">(MP3 up to 15 MB)</span></label>
       <input type="file" id="trackFile" accept="audio/mpeg,.mp3" required onchange="previewTrack()"/>
@@ -392,13 +393,13 @@
     <div class="modal">
       <h2>🤝 Support the Artist</h2>
       <div id="supportInfo" class="small"></div>
-      <input type="number" id="supportAmountUsd" placeholder="Amount in USD (optional)" step="0.01"/>
-      <input type="number" id="supportAmountEth" placeholder="Amount in ETH (optional)" step="0.0001"/>
-      <div class="small">Fill USD <b>or</b> ETH. Conversion shows automatically.</div>
+      <input type="number" id="supportAmountUsd" placeholder="Amount in USD (optional)"/>
+      <input type="number" id="supportAmountSats" placeholder="Amount in sats (optional)"/>
+      <div class="small">Fill USD <b>or</b> sats. Conversion shows automatically.</div>
       <div class="qr-box"><canvas id="supportQR" width="200" height="200"></canvas></div>
       <div class="small" id="supportUriBox" style="word-break:break-all;"></div>
       <div style="display:flex; gap:10px; margin-top:6px;">
-        <button class="confirm" onclick="confirmSupportPayment()">✅ I've paid</button>
+        <button class="confirm" onclick="confirmSupportPayment()">✅ I’ve paid</button>
         <button class="cancel" onclick="toggleModal('supportModal', false)">Cancel</button>
       </div>
     </div>
@@ -407,8 +408,8 @@
   <audio id="audio" playsinline preload="auto"></audio>
 
   <script>
-const API_BASE = "https://bongo-api.bongoapi.workers.dev";
-    const DEFAULT_TIP = "0x54d544138b9D7Bc747651dd83A6dC34b49D7ecEE"; // Example EVM wallet (ETH on Abstract)
+    const API_BASE = "https://bongo-api.bongoapi.workers.dev";
+    const DEFAULT_TIP = "bc1qcpdfkn20dtnpq9h9urqtjylzw99c6jkpfvj64w";
 
     const AppState = {
       provider: null,
@@ -421,7 +422,7 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
       isPlaying: false,
       currentSection: 'home',
       uploadPreview: { audio: null, cover: null },
-      ethUsd: null,
+      btcUsd: null,
       pendingSupport: null,
       isUploading: false,
       _playPingSent: false,
@@ -444,19 +445,19 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
 
       const url = getTrackShareUrl(t);
       const title = t.title || 'Track';
-      const text = `Listen to "${title}" on Pengu Beats`;
+      const text = `Listen to "${title}" on Bongo Cat`;
 
       if (navigator.share) {
         try {
-          await navigator.share({ title: `Pengu Beats – ${title}`, text, url });
+          await navigator.share({ title: `Bongo Cat – ${title}`, text, url });
           return;
-        } catch (_) { /* cancelled or failed; fallback */ }
+        } catch (_) { /* cancelado ou falhou; fallback */ }
       }
       try {
         await navigator.clipboard.writeText(url);
-        alert('Link copied: ' + url);
+        alert('Link copiado: ' + url);
       } catch {
-        prompt('Copy the track link:', url);
+        prompt('Copie o link da track:', url);
       }
     }
 
@@ -474,77 +475,74 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
     }
 
     function validateFile(file, kind) {
-      if (!(file instanceof File)) return { ok:false, reason:'File missing.' };
+      if (!(file instanceof File)) return { ok:false, reason:'Arquivo ausente.' };
 
       if (kind === 'audio') {
         if (!LIMITS.audioTypes.has(file.type)) {
-          return { ok:false, reason:'Only MP3 is accepted.' };
+          return { ok:false, reason:'Apenas MP3 é aceito.' };
         }
         if (file.size > LIMITS.audioMaxBytes) {
-          return { ok:false, reason:'MP3 exceeds 15 MB.' };
+          return { ok:false, reason:'O MP3 excede 15 MB.' };
         }
         if (!/\.(mp3)$/i.test(file.name || '')) {
-          return { ok:false, reason:'Invalid extension: use .mp3' };
+          return { ok:false, reason:'Extensão inválida: use .mp3' };
         }
         return { ok:true };
       }
 
       if (kind === 'image') {
         if (!LIMITS.imageTypes.has(file.type)) {
-          return { ok:false, reason:'Image must be JPG, PNG or WebP.' };
+          return { ok:false, reason:'Imagem deve ser JPG, PNG ou WebP.' };
         }
         if (file.size > LIMITS.imageMaxBytes) {
-          return { ok:false, reason:'Image exceeds 3 MB.' };
+          return { ok:false, reason:'A imagem excede 3 MB.' };
         }
         return { ok:true };
       }
 
-      return { ok:false, reason:'Unknown file type.' };
+      return { ok:false, reason:'Tipo de arquivo desconhecido.' };
     }
 
-    // Stable device ID (for deduplicated likes)
-    
+    // ID estável do dispositivo (para likes deduplicados)
+    const DEVICE_ID = (() => {
+      const k = 'bongoDeviceId';
+      let v = localStorage.getItem(k);
+      if (!v) { v = (crypto.randomUUID && crypto.randomUUID()) || String(Date.now()); localStorage.setItem(k, v); }
+      return v;
+    })();
 
     const initialTracks = [
-      { id: 1, title: "2010s roadtrip", artist: "Pengu Beats", genre: "Synthwave", cover: "./covers/2010s roadtrip.jpg", audio: "./tracks/2010s roadtrip.mp3" },
-      { id: 2, title: "blockchain", artist: "Pengu Beats", genre: "Electronic", cover: "./covers/blockchain.jpg", audio: "./tracks/blockchain.mp3" },
-      { id: 3, title: "dust e echoes", artist: "Pengu Beats", genre: "Ambient", cover: "./covers/dust e echoes.jpg", audio: "./tracks/dust e echoes.mp3" },
-      { id: 4, title: "edm", artist: "Pengu Beats", genre: "EDM", cover: "./covers/edm.jpg", audio: "./tracks/edm.mp3" },
-      { id: 5, title: "Eletronic", artist: "Pengu Beats", genre: "Electronic", cover: "./covers/eletronic.jpg", audio: "./tracks/Eletronic.mp3" },
-      { id: 6, title: "mountain", artist: "Pengu Beats", genre: "Ambient", cover: "./covers/mountain.jpg", audio: "./tracks/mountain.mp3" },
-      { id: 7, title: "progressive", artist: "Pengu Beats", genre: "Progressive", cover: "./covers/progressive.jpg", audio: "./tracks/progressive.mp3" },
-      { id: 8, title: "Smoke and Chill", artist: "Pengu Beats", genre: "Chill", cover: "./covers/smoke and chill.jpg", audio: "./tracks/Smoke and Chill.mp3" },
-      { id: 9, title: "sunset", artist: "Pengu Beats", genre: "Ambient", cover: "./covers/sunset.jpg", audio: "./tracks/sunset.mp3" },
-      { id: 10, title: "tiktok funk", artist: "Pengu Beats", genre: "Funk", cover: "./covers/tiktok funk.jpg", audio: "./tracks/tiktok funk.mp3" },
-      { id: 11, title: "trance", artist: "Pengu Beats", genre: "Trance", cover: "./covers/trance.jpg", audio: "./tracks/trance.mp3" },
-      { id: 12, title: "vintage rock", artist: "Pengu Beats", genre: "Rock", cover: "./covers/vintage rock.jpg", audio: "./tracks/vintage rock.mp3" }
+      { id: 1, title: "2010s roadtrip", artist: "Bongo Cat", genre: "Synthwave", cover: "./covers/2010s roadtrip.jpg", audio: "./tracks/2010s roadtrip.mp3" },
+      { id: 2, title: "blockchain", artist: "Bongo Cat", genre: "Electronic", cover: "./covers/blockchain.jpg", audio: "./tracks/blockchain.mp3" },
+      { id: 3, title: "dust e echoes", artist: "Bongo Cat", genre: "Ambient", cover: "./covers/dust e echoes.jpg", audio: "./tracks/dust e echoes.mp3" },
+      { id: 4, title: "edm", artist: "Bongo Cat", genre: "EDM", cover: "./covers/edm.jpg", audio: "./tracks/edm.mp3" },
+      { id: 5, title: "Eletronic", artist: "Bongo Cat", genre: "Electronic", cover: "./covers/eletronic.jpg", audio: "./tracks/Eletronic.mp3" },
+      { id: 6, title: "mountain", artist: "Bongo Cat", genre: "Ambient", cover: "./covers/mountain.jpg", audio: "./tracks/mountain.mp3" },
+      { id: 7, title: "progressive", artist: "Bongo Cat", genre: "Progressive", cover: "./covers/progressive.jpg", audio: "./tracks/progressive.mp3" },
+      { id: 8, title: "Smoke and Chill", artist: "Bongo Cat", genre: "Chill", cover: "./covers/smoke and chill.jpg", audio: "./tracks/Smoke and Chill.mp3" },
+      { id: 9, title: "sunset", artist: "Bongo Cat", genre: "Ambient", cover: "./covers/sunset.jpg", audio: "./tracks/sunset.mp3" },
+      { id: 10, title: "tiktok funk", artist: "Bongo Cat", genre: "Funk", cover: "./covers/tiktok funk.jpg", audio: "./tracks/tiktok funk.mp3" },
+      { id: 11, title: "trance", artist: "Bongo Cat", genre: "Trance", cover: "./covers/trance.jpg", audio: "./tracks/trance.mp3" },
+      { id: 12, title: "vintage rock", artist: "Bongo Cat", genre: "Rock", cover: "./covers/vintage rock.jpg", audio: "./tracks/vintage rock.mp3" }
     ];
 
-    // ===== ETH helpers (Abstract) =====
-    async function fetchETHUSD() {
+    // ===== BTC helpers =====
+    async function fetchBTCUSD() {
       try {
-        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd', { cache: 'no-store' });
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', { cache: 'no-store' });
         const data = await res.json();
-        AppState.ethUsd = data.ethereum.usd;
+        AppState.btcUsd = data.bitcoin.usd;
       } catch (_) {
-        AppState.ethUsd = AppState.ethUsd || 2500;
+        AppState.btcUsd = AppState.btcUsd || 60000;
       }
     }
-    function usdToEth(usd) { if (!AppState.ethUsd) return null; return (usd / AppState.ethUsd).toFixed(6); }
-    function ethToUsd(eth) { if (!AppState.ethUsd) return null; return (eth * AppState.ethUsd).toFixed(2); }
-    function toWeiStr(eth) {
-      const n = Number(eth);
-      if (!Number.isFinite(n)) return null;
-      try {
-        const wei = BigInt(Math.round(n * 1e18));
-        return wei.toString(); // decimal wei
-      } catch { return null; }
-    }
-    function makeEthereumURI(address, eth) {
-      const wei = toWeiStr(eth);
-      if (!wei) return `ethereum:${address}@2741`;
-      // EIP-681 transfer on Abstract (chainId 2741)
-      return `ethereum:${address}@2741/transfer?value=${wei}`;
+    function usdToSats(usd) { if (!AppState.btcUsd) return null; const btc = usd / AppState.btcUsd; return Math.round(btc * 1e8); }
+    function satsToUsd(sats) { if (!AppState.btcUsd) return null; return ((sats/1e8) * AppState.btcUsd).toFixed(2); }
+    function formatSats(sats) { return `${sats.toLocaleString()} sats`; }
+    function makeBitcoinURI(address, sats, label='Bongo Cat') {
+      const amountBtc = (sats/1e8).toFixed(8);
+      const q = new URLSearchParams({ amount: amountBtc, label });
+      return `bitcoin:${address}?${q.toString()}`;
     }
     function drawQR(canvasId, text) {
       try {
@@ -601,7 +599,7 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
         const genre = document.getElementById('trackGenre').value || 'Unknown';
         const coverSrc = AppState.uploadPreview.cover
           ? URL.createObjectURL(AppState.uploadPreview.cover)
-          : 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="%2314f195"><rect width="80" height="80" fill="%23333"/><text x="40" y="45" text-anchor="middle" fill="%2314f195" font-size="24">🎵</text></svg>';
+          : 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="%23f7931a"><rect width="80" height="80" fill="%23333"/><text x="40" y="45" text-anchor="middle" fill="%23f7931a" font-size="24">🎵</text></svg>';
         container.innerHTML = `
           <div class="upload-preview">
             <img src="${coverSrc}" alt="Preview">
@@ -633,7 +631,7 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
     async function getIdempotencyKey(audioFile, title, artist) {
       try {
         const h = await sha256(audioFile);
-        return `pengu:${h}:${(artist||'').trim().toLowerCase()}:${(title||'').trim().toLowerCase()}`;
+        return `bongo:${h}:${(artist||'').trim().toLowerCase()}:${(title||'').trim().toLowerCase()}`;
       } catch {
         return (crypto.randomUUID && crypto.randomUUID()) || String(Date.now());
       }
@@ -652,11 +650,11 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
 
       if (!title || !artist) {
         setUploading(false);
-        return fail('Please fill in title and artist.');
+        return fail('Preencha título e artista.');
       }
       if (!audioFile) {
         setUploading(false);
-        return fail('Please select an MP3 file.');
+        return fail('Selecione um arquivo MP3.');
       }
 
       const av = validateFile(audioFile, 'audio');
@@ -685,13 +683,13 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
 
         const res = await fetch(`${API_BASE}/api/upload`, { method: 'POST', body: fd });
         if (!res.ok) {
-          if (res.status === 413) throw new Error('File too large (limits: MP3 up to 15 MB; image up to 3 MB).');
-          if (res.status === 415) throw new Error('Unsupported file type.');
+          if (res.status === 413) throw new Error('Arquivo muito grande (limites: MP3 até 15 MB; imagem até 3 MB).');
+          if (res.status === 415) throw new Error('Tipo de arquivo não suportado.');
           throw new Error('Upload API error');
         }
         const { track } = await res.json();
 
-        const normalized = { likesCount: 0, tipTotalSol: 0, playCount: 0, ...track };
+        const normalized = { likesCount: 0, tipTotalSats: 0, playCount: 0, ...track };
 
         const keyOf = t => (t.id ?? t.audio);
         const idx = AppState.tracks.findIndex(t => keyOf(t) === keyOf(normalized));
@@ -718,7 +716,7 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
 
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
         <rect width="200" height="200" fill="#333"/>
-        <text x="100" y="100" text-anchor="middle" fill="#14f195" font-size="30">🎵</text>
+        <text x="100" y="100" text-anchor="middle" fill="#f7931a" font-size="30">🎵</text>
         <text x="100" y="130" text-anchor="middle" fill="#fff" font-size="12">${safeText}</text>
       </svg>`;
 
@@ -743,12 +741,12 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
 
       const addr = (track.tipAddress && track.tipAddress.trim()) ? track.tipAddress : DEFAULT_TIP;
 
-      AppState.pendingSupport = { trackId: tId, address: addr, eth: null };
+      AppState.pendingSupport = { trackId: tId, address: addr, sats: null };
       document.getElementById('supportInfo').innerHTML =
         `Send support to <b>${track.title}</b> – <span class="small">${addr}</span>`;
 
       document.getElementById('supportAmountUsd').value = '';
-      document.getElementById('supportAmountEth').value = '';
+      document.getElementById('supportAmountSats').value = '';
       document.getElementById('supportUriBox').innerHTML = '';
       const ctx = document.getElementById('supportQR').getContext('2d');
       ctx.clearRect(0,0,200,200);
@@ -756,33 +754,32 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
     }
     function updateSupportConversion() {
       const usdVal = parseFloat(document.getElementById('supportAmountUsd').value);
-      const ethVal = parseFloat(document.getElementById('supportAmountEth').value);
-      let eth = null;
+      const satsVal = parseInt(document.getElementById('supportAmountSats').value, 10);
+      let sats = null;
       if (!isNaN(usdVal)) {
-        if (!AppState.ethUsd) { fetchETHUSD(); return; }
-        eth = parseFloat(usdToEth(usdVal));
-        document.getElementById('supportAmountEth').value = eth || '';
-      } else if (!isNaN(ethVal)) {
-        eth = ethVal;
-        const usd = ethToUsd(eth);
+        if (!AppState.btcUsd) { fetchBTCUSD(); return; }
+        sats = usdToSats(usdVal);
+        document.getElementById('supportAmountSats').value = sats || '';
+      } else if (!isNaN(satsVal)) {
+        sats = satsVal;
+        const usd = satsToUsd(sats);
         if (usd) document.getElementById('supportAmountUsd').value = usd;
       }
-      if (eth && AppState.pendingSupport) {
-        AppState.pendingSupport.eth = eth;
-        const uri = makeEthereumURI(AppState.pendingSupport.address, eth);
+      if (sats && AppState.pendingSupport) {
+        AppState.pendingSupport.sats = sats;
+        const uri = makeBitcoinURI(AppState.pendingSupport.address, sats, 'Bongo Cat Tip');
         document.getElementById('supportUriBox').innerHTML = `<a href="${uri}">${uri}</a>`;
         drawQR('supportQR', uri);
       }
     }
     document.getElementById('supportAmountUsd').addEventListener('input', updateSupportConversion);
-    document.getElementById('supportAmountEth').addEventListener('input', updateSupportConversion);
+    document.getElementById('supportAmountSats').addEventListener('input', updateSupportConversion);
     function confirmSupportPayment() {
       const ctx = AppState.pendingSupport;
-      if (!ctx || !ctx.eth) { return; }
+      if (!ctx || !ctx.sats) { return; }
       const track = AppState.tracks.find(t => String(t.id) === String(ctx.trackId));
       if (!track) return;
-      // keep property name for compatibility with backend; value represents ETH on Abstract
-      track.tipTotalSol = (track.tipTotalSol || 0) + ctx.eth;
+      track.tipTotalSats = (track.tipTotalSats || 0) + ctx.sats;
       persistTracks();
       renderTracks();
       toggleModal('supportModal', false);
@@ -806,7 +803,7 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
       const val = document.getElementById('volValue');
       if (slider) slider.value = vol;
       if (val) val.textContent = `${Math.round(vol*100)}%`;
-      localStorage.setItem('penguVol', String(vol));
+      localStorage.setItem('bongoVol', String(vol));
       applyVolIcon(vol);
     }
     function toggleMute(){
@@ -848,7 +845,7 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
       }, { passive:false });
     });
 
-    // ======== GLOBAL METRICS (front) ========
+    // ======== MÉTRICAS GLOBAIS (front) ========
     async function fetchMetricsByIds(ids) {
       if (!ids || !ids.length) return [];
       const qs = new URLSearchParams({ ids: ids.map(String).join(',') });
@@ -886,7 +883,7 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
       const audio = document.getElementById('audio');
       audio.src = track.audio; audio.load();
 
-      const savedVol2 = parseFloat(localStorage.getItem('penguVol'));
+      const savedVol2 = parseFloat(localStorage.getItem('bongoVol'));
       audio.volume = Number.isFinite(savedVol2) ? savedVol2 : audio.volume;
       applyVolIcon(audio.volume);
       const volVal = document.getElementById('volValue');
@@ -1108,7 +1105,7 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
       if (favTracks.length === 0) {
         container.innerHTML = `
           <div class="empty-state">
-            <span class="cat-emoji">🐧</span>
+            <span class="cat-emoji">😺</span>
             <h3>No favorites yet!</h3>
             <p>Start hearting some tracks to see them here</p>
           </div>`;
@@ -1139,10 +1136,10 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
       if (window.innerWidth <= 980) closeSidebar();
     }
     function toggleModal(id, show) { document.getElementById(id).classList.toggle('active', show); }
-    function toggleUpload() { toggleModal('uploadModal', true); fetchETHUSD(); }
+    function toggleUpload() { toggleModal('uploadModal', true); fetchBTCUSD(); }
     function persistTracks() { localStorage.setItem('bongoCatTracks', JSON.stringify(AppState.tracks)); }
 
-    // ===== Sidebar (mobile-only behavior, desktop unchanged) =====
+    // ===== Sidebar (mobile-only behavior, desktop inalterado) =====
     function openSidebar(){
       const sb = document.getElementById('sidebar');
       const ov = document.getElementById('sidebarOverlay');
@@ -1164,13 +1161,13 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
       box.classList.toggle('show');
     }
 
-    // ===== Initialization =====
+    // ===== Inicialização =====
     async function loadPublicTracks() {
       try {
         const res = await fetch(`${API_BASE}/api/tracks`, { cache: 'no-store' });
         const tracks = await res.json();
         return tracks.map(t => ({
-          tipTotalSol: typeof t.tipTotalSol === 'number' ? t.tipTotalSol : 0, // field retained for compatibility
+          tipTotalSats: typeof t.tipTotalSats === 'number' ? t.tipTotalSats : 0,
           twitter: typeof t.twitter === 'string' ? t.twitter : '',
           ...t,
           likesCount: typeof t.likesCount === 'number' ? t.likesCount : 0,
@@ -1186,10 +1183,10 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
       const savedTracks = localStorage.getItem('bongoCatTracks');
       const local = savedTracks
         ? JSON.parse(savedTracks)
-        : initialTracks.map(t => ({ ...t, likesCount: 0, tipTotalSol: 0, playCount: 0, tipAddress: null, twitter: '' }));
+        : initialTracks.map(t => ({ ...t, likesCount: 0, tipTotalSats: 0, playCount: 0, tipAddress: null, twitter: '' }));
 
       let merged = mergeTrackLists(publicTracks, local);
-      merged = merged.map(t => ({ likesCount: 0, tipTotalSol: 0, playCount: 0, twitter: '', ...t }));
+      merged = merged.map(t => ({ likesCount: 0, tipTotalSats: 0, playCount: 0, twitter: '', ...t }));
       AppState.tracks = dedupeByKey(merged);
 
       const ids = AppState.tracks.map(t => t.id).filter(v => v != null);
@@ -1216,11 +1213,11 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
         document.getElementById('totalTime').textContent = '0:00';
       });
 
-      const savedVol = parseFloat(localStorage.getItem('penguVol'));
+      const savedVol = parseFloat(localStorage.getItem('bongoVol'));
       setVolume(Number.isFinite(savedVol) ? savedVol : 1);
 
       renderTracks();
-      fetchETHUSD();
+      fetchBTCUSD();
 
       // Deep-link: ?track=<id>
       try {
@@ -1238,87 +1235,9 @@ const API_BASE = "https://bongo-api.bongoapi.workers.dev";
         }
       } catch {}
 
-      console.log('🐧 Pengu Beats initialized on Abstract (chainId 2741)');
+      console.log('🐱 Bongo Cat initialized');
     }
     document.addEventListener('DOMContentLoaded', initializeApp);
-  
-async function loadTracksFromAPI() {
-  try {
-const response = await fetch(`${API_BASE}/api/tracks`);
-const data = await response.json();
-    if (Array.isArray(data)) {
-      AppState.tracks = data;
-      AppState.filteredTracks = [...data];
-      renderTracks();
-    } else {
-      throw new Error("Invalid data");
-    }
-  } catch (err) {
-    console.error("Failed to load tracks from API. Falling back to local list.", err);
-    AppState.tracks = initialTracks;
-    AppState.filteredTracks = [...initialTracks];
-    renderTracks?.();
-  }
-}
-
-loadTracksFromAPI();
-
-</script>
-
-<script>
-const API_URL = 'https://bongo-api.bongoapi.workers.dev';
-
-const DEVICE_ID = (() => {
-  const k = 'bongoDeviceId';
-  let v = localStorage.getItem(k);
-  if (!v) {
-    v = (crypto.randomUUID && crypto.randomUUID()) || String(Date.now());
-    localStorage.setItem(k, v);
-  }
-  return v;
-})();
-
-async function recordView(trackId) {
-  try {
-    await fetch(`${API_URL}/track/${trackId}/view`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ deviceId: DEVICE_ID }),
-    });
-  } catch (e) { console.error('Failed to record view:', e); }
-}
-
-async function pingPlayProgress(trackId) {
-  try {
-    await fetch(`${API_URL}/track/${trackId}/play`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ deviceId: DEVICE_ID }),
-    });
-  } catch (e) { console.error('Failed to ping play:', e); }
-}
-
-async function likeTrack(trackId) {
-  try {
-    await fetch(`${API_URL}/track/${trackId}/like`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ deviceId: DEVICE_ID }),
-    });
-  } catch (e) { console.error('Failed to like track:', e); }
-}
-
-async function getLikedTracks() {
-  try {
-    const res = await fetch(`${API_URL}/device/${DEVICE_ID}/likes`);
-    const json = await res.json();
-    return json.likes || [];
-  } catch (e) {
-    console.error('Failed to get liked tracks:', e);
-    return [];
-  }
-}
-</script>
-
+  </script>
 </body>
 </html>
